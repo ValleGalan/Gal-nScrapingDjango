@@ -1,0 +1,41 @@
+th,
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+.hscroll {
+  overflow-x: auto; /* Horizontal */
+}
+.wrapedText {
+  white-space: pre-line;
+  text-align: start;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.0;
+}
+td{
+  word-break: break-all !important;
+  white-space: nowrap !important;
+  width : 150px !important;
+  
+  }
+  th{
+    word-break: break-all !important;
+    white-space: nowrap !important;
+    width : 150px !important;
+    
+    }
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+ }
+ .imgTamanio {
+  height: 35px;
+  width: 120px;
+  border-radius: 6px;
+ }
+ .coloCard {
+  background-color: #FEF9A7;
+  border-radius: 4px;
+ }

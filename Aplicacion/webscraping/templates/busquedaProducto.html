@@ -1,0 +1,82 @@
+{% extends "./base.html" %}
+
+{% block title %} Mercado Libre Scraping {% endblock %}
+
+{% block body %}
+
+<div style="text-align: center;">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+    <div class="card ">
+        <div class="card-body coloCard">
+            <h3 class="text-success">Buscar producto en Mercado Libre</h3>  
+            <form class="form-inline my-2 my-lg-0" style="justify-content: center;" action="/registrarNombreProducto/" method="POST">{% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" name="productoInputBuscar" id="productoInputBuscar"
+                    placeholder="Buscar" style="width: 75%;">
+                <button class="btn btn-success " my-2 my-sm-0" type="submit" >Buscar producto</button>
+            </form>
+        </div>
+    </div>
+<!--TABLA CON PRODUCTOS-->
+<div class="hscroll" style="padding-top: 3%;">
+    <h4 class="text-primary">Listado de Nombres Productos Buscados</h4>
+    <div class="table-responsive py-2 ">
+        <table id="example" class="table table-striped"  cellspacing="0" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>id nombre producto</th>
+                    <th>Nombre Producto</th>
+                </tr>
+            </thead>
+            <!--Recorre mis productos-->
+            <tbody>
+                {% for c in nombreproductos%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{c.idnombreproducto}}</td>
+                    <td><a href="ListadoPorID/{{c.idnombreproducto}}" >{{c.nombre}}</a></td>
+                    <td><a href="eliminarNombreProducto/{{c.idnombreproducto}}" class="btn btn-danger btnEliminacion">Eliminar</a>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<!--TABLA DE PRODUCTOS ACTUALIZADOS-->
+<h4 class="text-primary">Tabla del producto que se modifico el precio</h4>
+<div class="table-responsive py-2 hscroll">
+    <table class="table table-striped" cellspacing="0" cellpadding="6">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Producto</th>
+                <th> URL producto</th>
+            </tr>
+        </thead>
+        <!--Recorre mis productos actuaizados-->
+        <tbody class="wrapedText">
+            {% for c in productosActualizadosListado %}
+            <tr>
+                <td class="wrapedText">{{c.idproducto}}</td>
+                <td class="wrapedText"> {{c.nombre_producto}}</td>
+                <td class="wrapedText">{{c.url_producto}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+</div>
+{% endblock %}

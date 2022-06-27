@@ -1,0 +1,51 @@
+{% extends "./base.html" %}
+
+<!--Parte hija-->
+<title> {% block title %} Productos {% endblock %}</title>
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="text-dark">{{ message }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+<div class="row" style="text-align: center;">
+    <h1>Listado de Productos por ID</h1>
+    <h4>{{NombreProducto.nombre}}</h4>
+    <div class="table-responsive py-2 hscroll">
+        <table class="table table-striped" cellspacing="0" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>IDNombreProducto</th>
+                    <th>ID</th>
+                    <th>Nombre Producto</th>
+                    <th>Precio ARS</th>
+                    <th> URL producto</th>
+                    <th>URL img producto</th>
+                </tr>
+            </thead>
+            <!--Recorre mis productos-->
+            <tbody class="wrapedText">
+                {% for c in productosListado%}
+                <tr>
+                    <td class="wrapedText">{{forloop.counter}}</td>
+                    <td class="wrapedText">{{c.idnombreproducto.idnombreproducto}}</td><!--porque es Foranea-->
+                    <td class="wrapedText">{{c.idproducto}}</td>
+                    <td class="wrapedText">{{c.nombre_producto}}</td>
+                    <td class="wrapedText">{{c.precio }}</td>
+                    <td class="wrapedText">{{c.url_producto}}</td>
+                    <td class="wrapedText">{{c.url_img_producto}}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}
